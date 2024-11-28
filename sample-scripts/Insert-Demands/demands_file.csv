@@ -1,0 +1,5 @@
+﻿Id,source,destination,traffic,name
+1,Node-4,Node-5,3,NewDemandAPI
+2,Node-5,Node-4,3,NewDemandAPI
+3,Node-2,Node-6,3,NewDemandAPI
+4,Node-6,Node-2,3,NewDemandAPI
