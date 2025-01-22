@@ -5,7 +5,7 @@ Hostname of nodes will be splitted by '.'. The second part of hostnames
 represents the Site. And Nodes will be grouped on Sites based on the second
 part of their hostnames.
 
-## How to use
+## How to use in WAE
 The design_api_python binary tool is located under the `<WAE-Design-Install-Dir>/bin` folder
 
     $ ./design_api_python /path/to/assign_sites_to_nodes.py <input-plan-file> <output-plan-file>

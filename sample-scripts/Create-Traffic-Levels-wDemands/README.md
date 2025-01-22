@@ -11,7 +11,7 @@ Levels in the network model, including demands traffic.
     -traffic-level-count: number of new traffic levels to be created
     -traffic-inc-pct: percentage to increase demands traffic at each traffic level
 
-## How to use
+## How to use in WAE
 The design_api_python binary tool is located under the `<WAE-Design-Install-Dir>/bin` folder
 
     $ ./design_api_python /path/to/create_traff_lvl_dmds.py -plan-file <input-plan-file> -out-file <output-plan-file> -traffic-level-count <int> -traffic-inc-pct <int>
