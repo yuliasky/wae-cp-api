@@ -27,3 +27,6 @@ WAE, CP or CP SDK.
 ## Links to related DevNet sites
 - WAE: https://developer.cisco.com/docs/wan-automation-engine/
 - CP: TBD
+
+[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/yuliasky/wae-cp-api)
+[![Run in Cisco Cloud IDE](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-runable-icon.svg)](https://developer.cisco.com/codeexchange/devenv/yuliasky/wae-cp-api/)
