@@ -8,6 +8,7 @@ import com.cisco.wae.design
 
 from argparse import ArgumentParser
 from argparse import RawDescriptionHelpFormatter
+from com.cisco.wae.design.model import PlanFormat
 from com.cisco.wae.design.model.net import NodeKey
 from com.cisco.wae.design.model.net import InterfaceKey
 from com.cisco.wae.design.model.net import TrafficLevelKey

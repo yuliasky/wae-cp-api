@@ -14,6 +14,8 @@ from com.cisco.wae.design.tools import SimAnalysis
 from com.cisco.wae.design.tools import SimAnalysisOptions
 from com.cisco.wae.design.model.net import TrafficLevelKey
 
+plan_file = '/opt/cw-plan-sdk/cw-planning/plan-files/us_wan.txt'
+
 def get_int_wc_util_traffic(int_wc_rec_list):
     # Get the worst case traffic utilization and its corresponding interface name
     int_wc_util_dic = {}
@@ -52,17 +54,13 @@ def main(argv=None):
     try:
         # Setup argument parser
         parser = ArgumentParser(description=program_desc, formatter_class=RawDescriptionHelpFormatter)
-        parser.add_argument("-plan-file", const="plan_file", required=True, type=str, nargs='?', help="input plan file (required)")
-        parser.add_argument("-cp-host", const="cp_host", required=True, type=str, nargs='?', help="Crosswork Planning Host (required)")
-        parser.add_argument("-cp-port", const="cp_port", required=True, type=str, nargs='?', help="Crosswork Planning Port (required)")
         parser.add_argument("-failure-type", required=True, type=str, nargs='+', help="Failure Sets [Nodes Sites Circuits Ports PortCircuits] (required)")
 
         # Process arguments
         args = parser.parse_args()
-        plan_file = args.plan_file
         failure_type = args.failure_type
-        cp_host = args.cp_host
-        cp_port = args.cp_port
+        cp_host = '172.20.163.100'
+        cp_port = '30744'
         protocol = 'ssl'
 
     except:
