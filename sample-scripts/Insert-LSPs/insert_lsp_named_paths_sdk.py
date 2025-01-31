@@ -17,11 +17,12 @@ from com.cisco.wae.design.model.net import LSPKey
 from com.cisco.wae.design.model.net import NamedPathKey
 from com.cisco.wae.design.model.net import LSPRecord
 from com.cisco.wae.design.model.net import LSPPathRecord
+from com.cisco.wae.design.model.net import LSPType
 from com.cisco.wae.design.model.net import NamedPathRecord
 from com.cisco.wae.design.model.net import NamedPathHopRecord
 from com.cisco.wae.design.model.net import HopType
 
-def insert_lsps(plan, lsp_source, lsp_dest, lsp_name, lsp_traffic, path_hops, lsp_type):
+def insert_lsps(plan, lsps_file_dict):
     tags = set()
     tags.add(lsp_type)
     lsp_record = LSPRecord(
@@ -33,17 +34,20 @@ def insert_lsps(plan, lsp_source, lsp_dest, lsp_name, lsp_traffic, path_hops, ls
     node_manager = plan.getNetwork().getNodeManager()
     has_node_source = node_manager.hasNode(key=NodeKey(name=lsp_source))
     has_node_dest = node_manager.hasNode(key=NodeKey(name=lsp_dest))
+    # Validate if Source Node and Destination Node exist
     if has_node_source == True and has_node_dest == True:
         lsp_manager = plan.getNetwork().getLSPManager()
         lsp_meas_traff = plan.getTrafficManager().getMeasuredTrafficManager().getLSPMeasuredTraffic()
         lsp_key = LSPKey(sourceKey=NodeKey(name=lsp_source), name=lsp_name)
         has_lsp = lsp_manager.hasLSP(key=lsp_key)
+        # Validate is LSP already exist in LSPs table
         if has_lsp == False:
             lsp = lsp_manager.newLSP(lspRec=lsp_record)
             traffic_lvl_manager = plan.getNetwork().getTrafficLevelManager()
             traffic_level = traffic_lvl_manager.getTrafficLevel(key=TrafficLevelKey(name='Default'))
             queue_manager = plan.getNetwork().getQueueManager()
             queue = queue_manager.getQueue(key=QueueKey(name=''))
+            # Validate if LSP Traffic has value
             if lsp_traffic != 'na':
                 lsp_meas_traff.setLSPTrafficValue(lsp=lsp, trafficLevel=traffic_level, queue=queue, traffic=float(lsp_traffic))
             #Insert LSP Path
@@ -54,7 +58,7 @@ def insert_lsps(plan, lsp_source, lsp_dest, lsp_name, lsp_traffic, path_hops, ls
                 active=True
             )
             lsp_path = lsp_path_manager.newLSPPath(pathRec=lsp_path_record)
-            #Insert Named Path
+            #Insert Named Path if path_hops in CSV has hops
             if path_hops != '':
                 insert_named_paths(plan, lsp_source, lsp_name, path_hops, lsp_path)
 
@@ -132,13 +136,13 @@ def main(argv=None):
         lsps_file_dict = csv.DictReader(open(lsps_file, 'r'))
         # Create lsps data dictionaries with inputs from file
         for lsp in lsps_file_dict:
-            lsp_source = lsp["source"]
-            lsp_dest = lsp["destination"]
-            lsp_name = lsp['name']
-            lsp_traffic = lsp['traffic']
-            path_hops = lsp['hops']
-            lsp_type = lsp['type']
-            insert_lsps(plan, lsp_source, lsp_dest, lsp_name, lsp_traffic, path_hops, lsp_type)
+        lsp_source = lsp["source"]
+        lsp_dest = lsp["destination"]
+        lsp_name = lsp['name']
+        lsp_traffic = lsp['traffic']
+        path_hops = lsp['hops']
+        lsp_type = lsp['type']
+        insert_lsps(plan, lsp_source, lsp_dest, lsp_name, lsp_traffic, path_hops, lsp_type)
 
         with open(out_file, 'wb') as file_w:
             file_w.write(plan.serializeToBytes(format=PlanFormat.DbFile))

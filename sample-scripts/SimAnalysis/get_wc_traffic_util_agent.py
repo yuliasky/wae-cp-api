@@ -14,7 +14,10 @@ from com.cisco.wae.design.tools import SimAnalysis
 from com.cisco.wae.design.tools import SimAnalysisOptions
 from com.cisco.wae.design.model.net import TrafficLevelKey
 
-plan_file = '/opt/cw-plan-sdk/cw-planning/plan-files/us_wan.txt'
+#plan_file = '/opt/cw-plan-sdk/cw-planning/plan-files/us_wan.txt'
+cp_host = '172.20.163.100'
+cp_port = '30744'
+protocol = 'ssl'
 
 def get_int_wc_util_traffic(int_wc_rec_list):
     # Get the worst case traffic utilization and its corresponding interface name
@@ -41,32 +44,12 @@ def get_int_wc_util_traffic(int_wc_rec_list):
 
     merge_dict = max_int_wc_util.copy()
     merge_dict.update(max_int_wc_traffic)
-    print(json.dumps(merge_dict))
+    #print(json.dumps(merge_dict))
 
-def main(argv=None):
-    if argv is None:
-        argv = sys.argv
-    else:
-        sys.argv.extend(argv)
+    return merge_dict
 
-    program_desc = 'Run Sim Analysis and Get Worst-Case Traffic Util'
-
-    try:
-        # Setup argument parser
-        parser = ArgumentParser(description=program_desc, formatter_class=RawDescriptionHelpFormatter)
-        parser.add_argument("-failure-type", required=True, type=str, nargs='+', help="Failure Sets [Nodes Sites Circuits Ports PortCircuits] (required)")
-
-        # Process arguments
-        args = parser.parse_args()
-        failure_type = args.failure_type
-        cp_host = '172.20.163.100'
-        cp_port = '30744'
-        protocol = 'ssl'
-
-    except:
-        return 0
-
-    print(datetime.datetime.now())
+def get_worst_case_traffic_utilization(failure_type):
+    global plan_file
     with open(plan_file, 'rb') as file_r:
         # Establish connection with the CP server
         conn = com.cisco.wae.design.ServiceConnectionManager.newServiceConnection(cp_host, cp_port, protocol)
@@ -99,10 +82,35 @@ def main(argv=None):
         # Get a list of records from Sim Analysis results with all interfaces worst-case attributes
         int_wc_rec_list = sim_analysis.getAllInterfaceWCRecords()
         # Call functions to get the Maximum Interface worst-case traffic and utilization values
-        get_int_wc_util_traffic(int_wc_rec_list)
+        merge_dict = get_int_wc_util_traffic(int_wc_rec_list)
 
         # Close connection with CP server
         com.cisco.wae.design.ServiceConnectionManager.shutdownService(conn)
+
+        return merge_dict
+
+def main(argv=None):
+    if argv is None:
+        argv = sys.argv
+    else:
+        sys.argv.extend(argv)
+
+    program_desc = 'Run Sim Analysis and Get Worst-Case Traffic Util'
+
+    try:
+        # Setup argument parser
+        parser = ArgumentParser(description=program_desc, formatter_class=RawDescriptionHelpFormatter)
+        parser.add_argument("-failure-type", required=True, type=str, nargs='+', help="Failure Sets [Nodes Sites Circuits Ports PortCircuits] (required)")
+
+        # Process arguments
+        args = parser.parse_args()
+        failure_type = args.failure_type
+
+    except:
+        return 0
+
+    print(datetime.datetime.now())
+
     print(datetime.datetime.now())
 
 # end main()
