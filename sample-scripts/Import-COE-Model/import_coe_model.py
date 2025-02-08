@@ -154,6 +154,10 @@ def copy_from_temlate(plan, plan_template):
                     site_key = site_tmp.getKey()
                     site = site_manager.getSite(key=site_key)
                     node.setSite(site)
+                else:
+                    node = node_manager.getNode(key=node_key)
+                    node.setLatitude(node_tmp.getLatitude())
+                    node.setLongitude(node_tmp.getLongitude())
 
 def copy_from_inventory(plan, plan_template):
     node_manager = plan.getNetwork().getNodeManager()
@@ -167,10 +171,11 @@ def copy_from_inventory(plan, plan_template):
         node_model = node.getModel()
         node_os = node.getOS()
         if node_vendor == '' and node_model == '' and node_os == '':
-            node_tmp = node_manager_tmp.getNode(key=NodeKey(name=node_name))
-            node.setVendor(val=node_tmp.getVendor())
-            node.setModel(val=node_tmp.getModel())
-            node.setOS(val=node_tmp.getOS())
+            if node_manager_tmp.hasNode(key=NodeKey(name=node_name)):
+                node_tmp = node_manager_tmp.getNode(key=NodeKey(name=node_name))
+                node.setVendor(val=node_tmp.getVendor())
+                node.setModel(val=node_tmp.getModel())
+                node.setOS(val=node_tmp.getOS())
 
 def main(argv=None):
     

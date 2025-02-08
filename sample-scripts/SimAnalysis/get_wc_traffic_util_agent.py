@@ -2,7 +2,7 @@
 
 import sys
 import re
-import datetime
+from datetime import datetime,timedelta
 import json
 import com.cisco.wae.design
 
@@ -48,8 +48,7 @@ def get_int_wc_util_traffic(int_wc_rec_list):
 
     return merge_dict
 
-def get_worst_case_traffic_utilization(failure_type):
-    global plan_file
+def get_worst_case_traffic_utilization(failure_type, plan_file):
     with open(plan_file, 'rb') as file_r:
         # Establish connection with the CP server
         conn = com.cisco.wae.design.ServiceConnectionManager.newServiceConnection(cp_host, cp_port, protocol)
@@ -109,9 +108,9 @@ def main(argv=None):
     except:
         return 0
 
-    print(datetime.datetime.now())
+    print(datetime.now())
 
-    print(datetime.datetime.now())
+    print(datetime.now())
 
 # end main()
 
