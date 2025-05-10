@@ -15,7 +15,7 @@ from com.cisco.wae.design.tools import SimAnalysisOptions
 from com.cisco.wae.design.model.net import TrafficLevelKey
 
 #plan_file = '/opt/cw-plan-sdk/cw-planning/plan-files/us_wan.txt'
-cp_host = '172.20.163.100'
+cp_host = '10.10.10.1'
 cp_port = '30744'
 protocol = 'ssl'
 
