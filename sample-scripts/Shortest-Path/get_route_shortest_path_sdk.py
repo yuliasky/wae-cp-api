@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/python3
 
 import sys
 from com.cisco.wae.opm.network import open_plan
@@ -10,9 +10,12 @@ node_a = sys.argv[2]
 node_b = sys.argv[3]
 metric_type = sys.argv[4]
 traffic = sys.argv[5]
+cp_host = sys.argv[6]
+cp_port = sys.argv[7]
+protocol = 'ssl'
 
 
-with open_plan(input_pln) as network:
+with open_plan(input_pln, cp_host, cp_port, protocol) as network:
 
     model = network.model
     nodes = model.nodes
