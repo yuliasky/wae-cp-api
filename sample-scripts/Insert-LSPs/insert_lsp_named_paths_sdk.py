@@ -136,13 +136,13 @@ def main(argv=None):
         lsps_file_dict = csv.DictReader(open(lsps_file, 'r'))
         # Create lsps data dictionaries with inputs from file
         for lsp in lsps_file_dict:
-        lsp_source = lsp["source"]
-        lsp_dest = lsp["destination"]
-        lsp_name = lsp['name']
-        lsp_traffic = lsp['traffic']
-        path_hops = lsp['hops']
-        lsp_type = lsp['type']
-        insert_lsps(plan, lsp_source, lsp_dest, lsp_name, lsp_traffic, path_hops, lsp_type)
+            lsp_source = lsp["source"]
+            lsp_dest = lsp["destination"]
+            lsp_name = lsp['name']
+            lsp_traffic = lsp['traffic']
+            path_hops = lsp['hops']
+            lsp_type = lsp['type']
+            insert_lsps(plan, lsp_source, lsp_dest, lsp_name, lsp_traffic, path_hops, lsp_type)
 
         with open(out_file, 'wb') as file_w:
             file_w.write(plan.serializeToBytes(format=PlanFormat.DbFile))

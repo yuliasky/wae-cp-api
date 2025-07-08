@@ -1,0 +1,4 @@
+﻿id,association_id,source,destination,traffic
+1,400,node_a,node_b,5
+2,401,node_c,node_d,4.5
+3,402,node_e,node_f,4
