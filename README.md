@@ -28,5 +28,9 @@ WAE, CP or CP SDK.
 - WAE: https://developer.cisco.com/docs/wan-automation-engine/
 - CP: https://developer.cisco.com/docs/crosswork/planning/
 
+## Cisco Crosswork Planning documentation
+- End-User Guides: https://www.cisco.com/c/en/us/support/routers/crosswork-planning/products-user-guide-list.html
+
+
 [![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/yuliasky/wae-cp-api)
 [![Run in Cisco Cloud IDE](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-runable-icon.svg)](https://developer.cisco.com/codeexchange/devenv/yuliasky/wae-cp-api/)
