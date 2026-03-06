@@ -17,4 +17,5 @@ For detailed instructions, please visit the oficial Cisco Crosswork Planning Des
 1. From the **Network Design UI**, select **Actions > Add-ons > Import COE Model**.
 2. In the **Options** page, complete the settings and select **Next**. Note: Create Demands, Copy Template and Copy Inventory are optional.
 <img src="/sample-addons/Import-COE-Model/img/addon_options.png" alt="Agent UI" width=800>
+
 3. In the **Run Settings** page, modify or keep default settings and then select **Submit**.
