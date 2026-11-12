@@ -91,7 +91,7 @@ def connect_cnc(cnc_ip, cnc_user, cnc_password):
 def get_coe_model(cnc_ip, jwt_token, pln_name, pln_schema):
     printmsg('\nMaking COE API call')
     url = "https://{}:30603/crosswork/nbi/optima/v2/restconf/operations/cisco-crosswork-optimization-engine-operations:get-plan".format(cnc_ip)
-    headers = {"Authorization":"Bearer {}".format(jwt_token),"Content-Type": "application/json"}
+    headers = {"Authorization":"Bearer {}".format(jwt_token),"Content-Type": "application/yang-data+json","Accept": "application/yang-data+json"}
     params = '{"input": {"version"' + ':"{}",'.format(pln_schema) + '"format":"txt"}}'
 
     response = send_request('POST', url, params, headers)
@@ -234,7 +234,7 @@ def main(argv=None):
             print("Demand Deduction is completed")
 
         with open(out_file, 'wb') as file_w:
-            file_w.write(plan.serializeToBytes(format=PlanFormat.PlnFile))
+            file_w.write(plan.serializeToBytes(format=PlanFormat.TxtFile))
         com.cisco.wae.design.ServiceConnectionManager.shutdownService(conn)
         com.cisco.wae.design.ServiceConnectionManager.shutdownService(conn_template)
     print(datetime.datetime.now())
