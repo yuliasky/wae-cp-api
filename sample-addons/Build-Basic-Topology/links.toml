@@ -1,0 +1,51 @@
+[[links]]
+src = "site1"
+dst = "site2"
+forward_name = "site1/site2"
+reverse_name = "site2/site1"
+metric = 40
+capacity_gbps = 8800
+augment_gbps = 400
+augment_cost = 3900
+colors = [
+    "APAC",
+]
+
+[[links]]
+src = "site10"
+dst = "site25"
+forward_name = "site10/site25"
+reverse_name = "site25/site10"
+metric = 700
+capacity_gbps = 200
+augment_gbps = 100
+augment_cost = 163000
+colors = [
+    "EMEA",
+]
+
+[[links]]
+src = "site12"
+dst = "site14"
+forward_name = "site12/site14"
+reverse_name = "site14/site12"
+metric = 450
+capacity_gbps = 400
+augment_gbps = 400
+augment_cost = 16000
+colors = [
+    "NAMR",
+]
+
+[[links]]
+src = "site1"
+dst = "site14"
+forward_name = "site1/site14"
+reverse_name = "site14/site1"
+metric = 1250
+capacity_gbps = 800
+augment_gbps = 100
+augment_cost = 183600
+colors = [
+    "AMR-APAC",
+]

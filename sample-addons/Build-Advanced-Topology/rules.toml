@@ -1,0 +1,51 @@
+[[rules]]
+src = "site1"
+dst = "site2"
+name = "site1/site2/be"
+exclude_colors = [
+    "AMR-APAC",
+    "AMR-AU",
+    "APAC-AU",
+    "APAC-CHINA",
+    "APAC-HNL",
+    "APAC-INDIA",
+    "AU",
+    "CHINA",
+    "EMEA",
+    "EMEA-INDIA",
+    "AMR-EMEIA",
+    "HNL",
+    "HNL-NAMR",
+    "INDIA",
+    "*",
+    "NAMR",
+    "NAMR-SAMR",
+    "SAMR",
+]
+paths = 8
+
+[[rules]]
+src = "site1"
+dst = "site3"
+name = "site1/site3/be"
+exclude_colors = [
+    "AMR-APAC",
+    "AMR-AU",
+    "APAC-AU",
+    "APAC-CHINA",
+    "APAC-HNL",
+    "APAC-INDIA",
+    "AU",
+    "CHINA",
+    "EMEA",
+    "EMEA-INDIA",
+    "AMR-EMEIA",
+    "HNL",
+    "HNL-NAMR",
+    "INDIA",
+    "*",
+    "NAMR",
+    "NAMR-SAMR",
+    "SAMR",
+]
+paths = 8

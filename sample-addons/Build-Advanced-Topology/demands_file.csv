@@ -1,0 +1,3 @@
+﻿Id,src,dst,type,time,demand_mbps,name
+1,site1,site2,prod,1821627000,4.6,NewDemandAPI1
+2,site25,site10,prod,1821896100,9346.66,NewDemandAPI2

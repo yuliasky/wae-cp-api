@@ -1,0 +1,17 @@
+[[cases]]
+name = "srlg:site1/1{100% site1/site2 + 100% site3/site4 + 100% site3/site5}"
+impact = [
+    { link = "site1/site2", capacity_percent = 0 },
+    { link = "site3/site4", capacity_percent = 0 },
+    { link = "site3/site5", capacity_percent = 0 },
+]
+
+[[cases]]
+name = "srlg:site1/2{100% site1/site2 + 100% site1/site7 + 100% site1/site8 + 50% site1/site3 + 50% site6/site3}"
+impact = [
+    { link = "site1/site3", capacity_percent = 50 },
+    { link = "site6/site3", capacity_percent = 50 },
+    { link = "site1/site2", capacity_percent = 0 },
+    { link = "site1/site7", capacity_percent = 0 },
+    { link = "site1/site8", capacity_percent = 0 },
+]
